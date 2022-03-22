@@ -1,0 +1,43 @@
+<!-- author ben lawson (balawson@bu.edu) -->
+<!doctype html>
+{% if message %}
+  <h4>{{message}}!</h4>
+{% endif %}
+<title>Photoshare</title>
+{% if name %}
+  <h1>Hello {{ name }}!</h1>
+{% endif %}
+
+{% if photos %}
+<h2>Here are your photos</h2>
+    <ul>
+    {% for photo in photos %}
+
+        <li>{{photo[2]}}<br>
+        <a href="{{ url_for('photo', photo_id = photo[1]) }}">
+        <img src='data:image/jpg;base64, {{ base64.b64encode(photo[0]).decode("ascii") }}'/></a></li>
+    {% endfor %}
+    </ul>
+{% endif %}
+
+{% if message is none %}
+  <p>You should <a href='/login'>login!</a></p>
+{% else %}
+  <p> Go to <a href='/profile'>profile?</a></p>
+{% endif %}
+
+
+<ul>
+  <li><a href='/albums'>View Your Albums/Photos</a> </li>
+  <li><a href='/upload'>Upload a photo</a> </li>
+  <li><a href='/browse'>Browse All Photos</a> </li>
+  <li><a href='/also_like'>You may also like</a> </li>
+  <li><a href='/friends'>Friends</a> </li>
+  <li><a href='/friend_recommendation'>Friend Recommendations</a> </li>
+  <li><a href='/popular_tags'>Popular Tags</a> </li>
+  <li><a href='/photo_search'>Photo Search</a> </li>
+  <li><a href='/comment_search'>Comment Search</a> </li>
+  <li><a href='/user_contributions'>User Contributions</li>
+  <li><a href='/logout'>Logout</a></li>
+  <li><a href='/'>Home</a></li>
+</ul>
